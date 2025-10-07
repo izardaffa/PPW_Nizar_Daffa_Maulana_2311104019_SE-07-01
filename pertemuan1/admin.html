@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      color: cyan;
+    }
+
+    body {
+      background-color: black;
+    }
+
+    #header {
+      border: 1px solid cyan;
+      padding: 2rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    main {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      min-height: 60vh;
+    }
+
+    #menu {
+      border: 1px solid cyan;
+      width: 20%;
+    }
+
+    #menu a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+    }
+
+    #menu a:hover {
+      /* background-color: cyan; */
+      /* color: black; */
+      border: 1px solid cyan;
+    }
+
+    #content {
+      border: 1px solid cyan;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    #footer {
+      border: 1px solid cyan;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">Header</div>
+  
+  <main>
+    <div id="menu">
+      <a href="#">Data User</a>
+      <a href="#">Kelola Produk</a>
+      <a href="#">Edit Password</a>
+      <a href="#">Logout</a>
+    </div>
+    
+    <div id="content">
+      Content
+    </div>
+  </main>
+  
+  <div id="footer">&copy; 2025</div>
+</body>
+</html>
