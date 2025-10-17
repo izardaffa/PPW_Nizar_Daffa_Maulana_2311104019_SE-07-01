@@ -1,108 +1,149 @@
+:root {
+  --primary: magenta;
+  --max-width: 1200px;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+}
+
+.container {
+  /* center content with a comfortable max width and responsive padding */
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 header {
-  padding: 4rem 12rem;
-  background-color: magenta;
+  background-color: var(--primary);
   color: white;
-}
-
-nav {
   display: flex;
-  justify-content: end;
-  gap: 1rem;
-  padding: 2rem 12rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
-nav a {
-  color: magenta;
-  text-decoration: none;
+/* header uses the .container class in the markup. Keep header full-bleed while centering its inner content. */
+header.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+}
+
+header .title h1 {
+  font-size: 32px;
+}
+
+header nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header nav a {
+  color: white;
+  font-size: 18px;
   font-weight: bold;
-  font-size: 20px;
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
 }
 
 #hero {
-  width: 80vw;
-  height: 500px;
-  margin: auto;
-  object-position: center;
   overflow: hidden;
-  /* background-color: magenta; */
-  background-image: url(img/hero.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-
-.grid-layout {
-  display: grid;
-  grid-template-columns: 80% 20%;
-  gap: 1rem; /* jarak antar kolom opsional */
-  padding: 0 12rem;
-}
-#products {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 kolom per baris */
-  gap: 2rem; /* jarak antar card */
-  margin-bottom: 4rem;
-}
-
-#products .card {
-  /* border: 1px solid #000; */
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  font-weight: bold;
-}
-
-#products .card img {
   width: 100%;
-  margin-bottom: 10px;
 }
 
-#products .card .prod-name {
-  font-size: 20px;
-  margin-bottom: 10px;
+#hero .slideshow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  animation: slide 12s infinite;
 }
 
-#products .card .prod-price {
-  font-size: 24px;
-  color: magenta;
-  margin-bottom: 10px;
+/* each slide should take full slide width; previous width:30% caused squashing and horizontal scroll */
+#hero .img-container {
+  flex: 0 0 100%;
+  width: 100%;
 }
 
-#aside {
-  /* background: #bbdefb; */
+#hero .img-container img {
+  width: 100%;
+  display: block;
+  height: auto;
+  object-fit: cover;
+}
+
+/* .row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  border: 1px solid red;
+} */
+
+main {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+#products {
+  flex: 3 1 0%;
+}
+
+#recommendation {
+  flex: 1 1 0%;
+}
+
+/* Use a responsive grid that adapts to available width */
+#products .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  /* padding: 2rem; */
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card .card-desc {
   padding: 1rem;
 }
 
-#aside .recommendation {
-  color: magenta;
-  font-weight: bold;
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 1rem;
+.card-desc > * {
+  line-height: 150%;
 }
 
-#aside img {
-  width: 100%;
+.card-desc .title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card-desc button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  margin-top: 1rem;
+  cursor: pointer;
 }
 
 footer {
   background-color: magenta;
   color: white;
-  padding: 6rem 12rem;
+  padding: 4rem 2rem;
   display: flex;
   justify-content: space-between;
-  /* gap: 4rem; */
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .form > * {
@@ -117,8 +158,10 @@ footer {
 
 .form input {
   font-size: 18px;
-  min-width: 400px;
-  padding: 1rem 1rem;
+  min-width: 0;
+  max-width: 420px;
+  width: 100%;
+  padding: 0.8rem 1rem;
   border: none;
   border-radius: 5px;
 }
@@ -138,4 +181,104 @@ footer .links {
   font-size: 18px;
   text-decoration: none;
   color: white;
+}
+
+/* ensure recommendation image fits its column */
+#recommendation img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+/* Slideshow Animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(0%);
+  }
+
+  33% {
+    transform: translateX(-100%);
+  }
+  63% {
+    transform: translateX(-100%);
+  }
+
+  66% {
+    transform: translateX(-200%);
+  }
+  96% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  } /* balik ke awal */
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  header .title h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* stack header content */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  header nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  #recommendation {
+    order: 2;
+    width: 100%;
+  }
+
+  #products {
+    order: 1;
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header .title h1 {
+    font-size: 22px;
+  }
+
+  header nav a {
+    font-size: 16px;
+    padding: 0.4rem 0.6rem;
+  }
+
+  #products .row {
+    grid-template-columns: 1fr;
+    padding: 1rem 0;
+  }
+
+  .form label {
+    font-size: 18px;
+  }
 }
